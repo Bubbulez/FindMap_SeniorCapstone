@@ -6,8 +6,8 @@ export default function Home() {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      background: "linear-gradient(to bottom, #f8b7c8, #c7a6ff, #b9d6ff)",
-      fontFamily: "Arial"
+      background: "linear-gradient(to bottom, #000861)",
+      fontFamily: "Helvetica"
     }}>
       <h1 style={{ fontSize: "60px", color: "white" }}>
         FindMap
@@ -22,7 +22,7 @@ export default function Home() {
         borderRadius: "30px",
         border: "none",
         fontWeight: "bold",
-        backgroundColor: "#ff7a59",
+        backgroundColor: " #000861",
         color: "white",
         cursor: "pointer"
       }}>
