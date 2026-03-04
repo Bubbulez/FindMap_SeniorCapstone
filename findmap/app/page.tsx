@@ -7,32 +7,18 @@ export default function Home() {
   const tabs = ["Events", "Buildings", "Dining", "Clubs"];
 
   return (
-<<<<<<< HEAD
     <main
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        paddingTop: "80px",
-        background:
-          "linear-gradient(to bottom, #f8b7c8, #c7a6ff, #b9d6ff)",
-        fontFamily: "Arial",
+        justifyContent: "center",
+        background: "linear-gradient(to bottom, #000031, #434379)",
+        fontFamily: "Helvetica",
       }}
     >
-      <h1 style={{ fontSize: "60px", color: "white", marginBottom: "10px" }}>
-=======
-    <main style={{
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      background: "linear-gradient(to bottom, #000031, #434379)",
-      fontFamily: "Helvetica "
-    }}>
-      <h1 style={{ fontSize: "80px", color: "white" }}>
->>>>>>> 1e016f1 (Updated font, changed baackground color and button)
+      <h1 style={{ fontSize: "80px", color: "white", marginBottom: "20px" }}>
         FindMap
       </h1>
 
@@ -46,7 +32,7 @@ export default function Home() {
         FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
       </p>
 
-
+      {/* Tabs */}
       <div
         style={{
           display: "flex",
@@ -64,8 +50,7 @@ export default function Home() {
               border: "none",
               cursor: "pointer",
               fontWeight: "bold",
-              backgroundColor:
-                activeTab === tab ? "#4285F4" : "white",
+              backgroundColor: activeTab === tab ? "#4285F4" : "white",
               color: activeTab === tab ? "white" : "black",
               boxShadow:
                 activeTab === tab
@@ -79,6 +64,7 @@ export default function Home() {
         ))}
       </div>
 
+      {/* Dynamic Content */}
       <div
         style={{
           backgroundColor: "white",
@@ -93,28 +79,18 @@ export default function Home() {
         <p>Showing {activeTab.toLowerCase()} near you.</p>
       </div>
 
+      {/* Main Button */}
       <button
         style={{
           padding: "12px 25px",
           borderRadius: "30px",
           border: "none",
           fontWeight: "bold",
-          backgroundColor: "#ff7a59",
+          backgroundColor: "#2a80d6",
           color: "white",
           cursor: "pointer",
         }}
       >
-=======
-      <button style={{
-        padding: "12px 25px",
-        borderRadius: "30px",
-        border: "none",
-        fontWeight: "bold",
-        backgroundColor: " #2a80d6",
-        color: "white",
-        cursor: "pointer"
-      }}>
->>>>>>> 1e016f1 (Updated font, changed baackground color and button)
         Explore Campus Events
       </button>
     </main>
