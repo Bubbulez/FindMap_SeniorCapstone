@@ -21,6 +21,7 @@ export const locations = [
   },
   {
     title: "Nancy Thompson Library",
-    address: ""
+    address: "1000 Morris Ave, Union, NJ 07083",
+    embedUrl: <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6051.631655184196!2d-74.23595892393101!3d40.67802677139868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad5ca13190f5%3A0x74b57d6eb308f6c3!2sNancy%20Thompson%20Library!5e0!3m2!1sen!2sus!4v1772654487608!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   },
 ];
