@@ -46,7 +46,7 @@ export default function Home() {
         FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
       </p>
 
-<<<<<<< HEAD
+
       <div
         style={{
           display: "flex",
