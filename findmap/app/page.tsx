@@ -14,7 +14,7 @@ export default function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(to bottom, #000031, #434379)",
+        background: "linear-gradient(to bottom, #32417b, #84848e)",
         fontFamily: "Helvetica",
       }}
     >
