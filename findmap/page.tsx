@@ -1,47 +1,61 @@
 <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
-
-  <Link href="/events">
-    <button style={{
+  <Link
+    href="/events"
+    style={{
       padding: "10px 20px",
       borderRadius: "20px",
-      border: "none",
-      cursor: "pointer"
-    }}>
-      Events
-    </button>
+      backgroundColor: "#4a8df6",
+      color: "white",
+      textDecoration: "none",
+      fontWeight: "bold",
+      display: "inline-block"
+    }}
+  >
+    Events
   </Link>
 
-  <Link href="/buildings">
-    <button style={{
+  <Link
+    href="/buildings"
+    style={{
       padding: "10px 20px",
       borderRadius: "20px",
-      border: "none",
-      cursor: "pointer"
-    }}>
-      Buildings
-    </button>
+      backgroundColor: "white",
+      color: "black",
+      textDecoration: "none",
+      fontWeight: "bold",
+      display: "inline-block"
+    }}
+  >
+    Buildings
   </Link>
 
-  <Link href="/dining">
-    <button style={{
+  <Link
+    href="/dining"
+    style={{
       padding: "10px 20px",
       borderRadius: "20px",
-      border: "none",
-      cursor: "pointer"
-    }}>
-      Dining
-    </button>
+      backgroundColor: "white",
+      color: "black",
+      textDecoration: "none",
+      fontWeight: "bold",
+      display: "inline-block"
+    }}
+  >
+    Dining
   </Link>
 
-  <Link href="/clubs">
-    <button style={{
+  <Link
+    href="/clubs"
+    style={{
       padding: "10px 20px",
       borderRadius: "20px",
-      border: "none",
-      cursor: "pointer"
-    }}>
-      Clubs
-    </button>
+      backgroundColor: "white",
+      color: "black",
+      textDecoration: "none",
+      fontWeight: "bold",
+      display: "inline-block"
+    }}
+  >
+    Clubs
   </Link>
-
 </div>

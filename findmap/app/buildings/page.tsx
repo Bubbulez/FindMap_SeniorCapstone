@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export default function Home() {
   return (
     <div>
@@ -19,4 +20,8 @@ export default function Home() {
       </footer>
     </div>
   );
+=======
+export default function BuildingsPage() {
+  return <h1>Buildings Page</h1>;
+>>>>>>> deli
 }
