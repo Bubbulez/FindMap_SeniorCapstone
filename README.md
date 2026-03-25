@@ -35,7 +35,7 @@ git pull origin main
 Example branch:
 
 ```
-git checkout -b feature-events
+git checkout feature-events
 ```
 
 You are now working in your own branch.
