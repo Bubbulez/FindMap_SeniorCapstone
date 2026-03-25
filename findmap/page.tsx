@@ -1,65 +1,47 @@
-export default function Home() {
+<div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
 
-  return (
-
-    <main style={{
-
-      minHeight: "100vh",
-
-      display: "flex",
-
-      flexDirection: "column",
-
-      justifyContent: "center",
-
-      alignItems: "center",
-
-      background: "linear-gradient(to bottom, #f8b7c8, #c7a6ff, #b9d6ff)",
-
-      fontFamily: "Arial"
-
+  <Link href="/events">
+    <button style={{
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer"
     }}>
+      Events
+    </button>
+  </Link>
 
-      <h1 style={{ fontSize: "60px", color: "white" }}>
+  <Link href="/buildings">
+    <button style={{
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer"
+    }}>
+      Buildings
+    </button>
+  </Link>
 
-        FindMap
+  <Link href="/dining">
+    <button style={{
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer"
+    }}>
+      Dining
+    </button>
+  </Link>
 
-      </h1>
+  <Link href="/clubs">
+    <button style={{
+      padding: "10px 20px",
+      borderRadius: "20px",
+      border: "none",
+      cursor: "pointer"
+    }}>
+      Clubs
+    </button>
+  </Link>
 
-
-
-      <p style={{ color: "white", fontWeight: "bold", marginBottom: "20px" }}>
-
-        FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
-
-      </p>
-
-
-
-      <button style={{
-
-        padding: "12px 25px",
-
-        borderRadius: "30px",
-
-        border: "none",
-
-        fontWeight: "bold",
-
-        backgroundColor: "#ff7a59",
-
-        color: "white",
-
-        cursor: "pointer"
-
-      }}>
-
-        Explore Campus Events
-
-      </button>
-
-    </main>
-
-  );
-
-}
+</div>
