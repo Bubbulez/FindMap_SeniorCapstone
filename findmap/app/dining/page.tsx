@@ -1,3 +1,9 @@
+import "../../styles/main.css";
+
 export default function DiningPage() {
-  return <h1>Dining Page</h1>;
+  return (
+    <main>
+      <h1>Dining</h1>
+    </main>
+  );
 }
