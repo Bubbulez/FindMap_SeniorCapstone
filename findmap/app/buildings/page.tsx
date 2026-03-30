@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { locations } from '../../pages/locations';
-import "./globals.css";
 
 
 export default function BuildingsPage() {
