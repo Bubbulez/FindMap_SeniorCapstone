@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { locations } from '../../data/locations';
+import { locations, type Location } from "../../data/locations";
 
 export default function BuildingsPage() {
-  const [selectedBuilding, setSelectedBuilding] = useState(locations[0]);
+  const [selectedBuilding, setSelectedBuilding] = useState<Location>(locations[0]);
 
   return (
     <div
@@ -29,15 +29,15 @@ export default function BuildingsPage() {
         </h1>
 
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          {locations.map((loc, index) => (
+          {locations.map((loc) => (
             <button
-              key={index}
+              key={loc.title}
               onClick={() => setSelectedBuilding(loc)}
               style={{
                 textAlign: "left",
                 padding: "15px",
                 backgroundColor:
-                  selectedBuilding?.title === loc.title ? "#e0f2fe" : "#fff",
+                  selectedBuilding.title === loc.title ? "#e0f2fe" : "#fff",
                 border: "1px solid #ccc",
                 borderRadius: "8px",
                 cursor: "pointer",
@@ -45,9 +45,7 @@ export default function BuildingsPage() {
               }}
             >
               <div style={{ fontWeight: "bold" }}>{loc.title}</div>
-              <div style={{ fontSize: "12px", color: "#666" }}>
-                {loc.address}
-              </div>
+              <div style={{ fontSize: "12px", color: "#666" }}>{loc.address}</div>
             </button>
           ))}
         </div>
@@ -62,19 +60,19 @@ export default function BuildingsPage() {
             backgroundColor: "#f9f9f9",
           }}
         >
-          <h2>Currently Viewing: {selectedBuilding?.title}</h2>
-          <p>{selectedBuilding?.address}</p>
+          <h2>Currently Viewing: {selectedBuilding.title}</h2>
+          <p>{selectedBuilding.address}</p>
 
           <div style={{ marginTop: "15px", borderRadius: "8px", overflow: "hidden" }}>
             <iframe
-              src={selectedBuilding?.embedUrl}
+              src={selectedBuilding.embedUrl}
               width="100%"
-              height="400"
+              height="450"
               style={{ border: 0 }}
-              loading="lazy"
               allowFullScreen
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title={selectedBuilding?.title}
+              title={selectedBuilding.title}
             />
           </div>
         </div>
