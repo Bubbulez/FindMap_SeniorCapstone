@@ -80,7 +80,6 @@ export default function Home() {
       </div>
 
       {/* Main Button */}
-      <a href="/events"> 
       <button
         style={{
           padding: "12px 25px",
@@ -94,7 +93,6 @@ export default function Home() {
       >
         Explore Campus Events
       </button>
-    </a> //added this
     </main>
   );
 }
