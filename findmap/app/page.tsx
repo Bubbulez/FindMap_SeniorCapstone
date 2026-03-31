@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter(); // added router so we can navigate pages
+
   const [activeTab, setActiveTab] = useState("Events");
   const tabs = ["Events", "Buildings", "Dining", "Clubs"];
 
@@ -44,7 +46,10 @@ export default function Home() {
         {tabs.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => {
+              setActiveTab(tab); // keeps the tab highlighted
+              router.push(`/${tab.toLowerCase()}`); // sends user to that page
+            }}
             style={{
               padding: "8px 18px",
               borderRadius: "20px",
@@ -72,8 +77,8 @@ export default function Home() {
           padding: "20px",
           borderRadius: "15px",
           width: "300px",
-          color:"black",
-          fontWeight:"bold",
+          color: "black",
+          fontWeight: "bold",
           textAlign: "center",
           marginBottom: "30px",
         }}
@@ -83,8 +88,8 @@ export default function Home() {
       </div>
 
       {/* Main Button */}
-      <a href="/events">
       <button
+        onClick={() => router.push("/events")}
         style={{
           padding: "12px 25px",
           borderRadius: "30px",
@@ -97,7 +102,6 @@ export default function Home() {
       >
         Explore Campus Events
       </button>
-      </a>
     </main>
   );
 }
