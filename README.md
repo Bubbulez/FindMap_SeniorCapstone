@@ -1,4 +1,4 @@
-# FindMap_SeniorCapstone# FindMap_SeniorCapstone# FindMap Senior Capstone – Team Development Guide
+# FindMap Senior Capstone – Team Development Guide
 
 This document explains how to install the project, run it locally, and collaborate with teammates using GitHub.
 
@@ -12,109 +12,6 @@ Use **Ctrl+F** to quickly find commands like:
 - commit
 
 ---
-
-_________________________________________
-
-READ FROM HERE PLS
-NAHLA, SYDNEY, DELALI
-# SECTION 4 — DAILY TEAM WORKFLOW (IMPORTANT)
-
-Follow this order **every time you work on the project**.
-
-### Step 1 — Pull latest changes
-
-```
-git checkout main
-git pull origin main
-```
-
----
-
-### Step 2 — Create a new branch
-
-Example branch:
-
-```
-git checkout feature-events
-```
-
-You are now working in your own branch.
-
----
-
-### Step 3 — Work on your code
-
-Edit files normally.
-
-Example:
-
-```
-app/events/page.tsx
-```
-
----
-
-### Step 4 — Add files
-
-```
-git add .
-```
-
----
-
-### Step 5 — Commit changes
-
-```
-git commit -m "describe your change"
-```
-
-Example:
-
-```
-git commit -m "added events page"
-```
-
----
-
-### Step 6 — Push branch
-
-```
-git push origin feature-events
-```
-
-Your branch is now on GitHub.
-
----
-
-### Merge locally
-
-Switch to main:
-
-```
-git checkout main
-```
-
-Pull latest code:
-
-```
-git pull origin main
-```
-
-Merge your branch:
-
-```
-git merge feature-events
-```
-
-Push updated main:
-
-```
-git push origin main
-```
-
----
-____________________________________________________________
-
 
 # SECTION 1 — INSTALLATION (FIRST TIME SETUP)
 
@@ -227,9 +124,144 @@ app/events/page.tsx → /events
 ```
 
 ---
-_____________________________________________________________________________________________________________
 
-# SECTION — CHECKING CHANGES
+# SECTION 4 — DAILY TEAM WORKFLOW (IMPORTANT)
+
+Follow this order **every time you work on the project**.
+
+### Step 1 — Pull latest changes
+
+```
+git checkout main
+git pull origin main
+```
+
+---
+
+### Step 2 — Create a new branch
+
+Example branch:
+
+```
+git checkout -b feature-events
+```
+
+You are now working in your own branch.
+
+---
+
+### Step 3 — Work on your code
+
+Edit files normally.
+
+Example:
+
+```
+app/events/page.tsx
+```
+
+---
+
+### Step 4 — Add files
+
+```
+git add .
+```
+
+---
+
+### Step 5 — Commit changes
+
+```
+git commit -m "describe your change"
+```
+
+Example:
+
+```
+git commit -m "added events page"
+```
+
+---
+
+### Step 6 — Push branch
+
+```
+git push origin feature-events
+```
+
+Your branch is now on GitHub.
+
+---
+
+# SECTION 5 — MERGING BRANCHES
+
+### Option A (Recommended — GitHub)
+
+1. Go to GitHub repository
+2. Click **Compare & Pull Request**
+3. Review code
+4. Click **Merge into main**
+
+---
+
+### Option B (Merge locally)
+
+Switch to main:
+
+```
+git checkout main
+```
+
+Pull latest code:
+
+```
+git pull origin main
+```
+
+Merge your branch:
+
+```
+git merge feature-events
+```
+
+Push updated main:
+
+```
+git push origin main
+```
+
+---
+
+# SECTION 6 — PULLING UPDATES
+
+Always pull before coding:
+
+```
+git pull origin main
+```
+
+If Git shows a branch conflict error:
+
+```
+git pull origin main --rebase
+```
+
+---
+
+# SECTION 7 — PUSHING CHANGES
+
+Standard push workflow:
+
+```
+git add .
+git commit -m "message"
+git push origin main
+```
+
+---
+
+# SECTION 8 — CHECKING CHANGES
 
 See changed files:
 
@@ -251,7 +283,7 @@ git branch
 
 ---
 
-# INSTALLING NEW PACKAGES
+# SECTION 9 — INSTALLING NEW PACKAGES
 
 If someone installs a new package:
 
@@ -267,7 +299,6 @@ npm install axios
 ```
 
 ---
-________________________________________________________
 
 # SECTION 10 — CREATING NEW PAGES
 
