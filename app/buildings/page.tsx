@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { locations, type Location } from "../../data/locations";
+import { locations, type Location } from "../data/locations";
 
 export default function BuildingsPage() {
   const [selectedBuilding, setSelectedBuilding] = useState<Location>(locations[0]);

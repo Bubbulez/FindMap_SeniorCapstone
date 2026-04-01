@@ -1,30 +1,29 @@
-/*export default function ClubsPage() {
+import { clubs } from "../data/clubs";
+
+export default function ClubsPage() {
   return (
-    <main>
-      <h1>Clubs Page</h1>
+    <main style={{ padding: "20px" }}>
+      <h1>Clubs</h1>
+
+      {clubs.map((club) => (
+        <div
+          key={club.id}
+          style={{
+            border: "1px solid #ccc",
+            padding: "10px",
+            marginBottom: "15px",
+            borderRadius: "10px"
+          }}
+        >
+          <h2>{club.name}</h2>
+          <p>{club.description}</p>
+          <p><strong>Meeting:</strong> {club.meeting}</p>
+
+          <a href={club.link} target="_blank">
+            View Club
+          </a>
+        </div>
+      ))}
     </main>
-  );
-} */
-
-export default function ClubPage() {
-  return (
-    <div>
-      <header>
-        <h1>My Website</h1>
-      </header>
-
-      <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-      </nav>
-
-      <main>
-        <p>Welcome to my site</p>
-      </main>
-
-      <footer>
-        <p>© FindMap 2026</p>
-      </footer>
-    </div>
   );
 }
