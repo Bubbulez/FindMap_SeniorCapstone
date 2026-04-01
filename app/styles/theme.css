@@ -1,0 +1,204 @@
+.page-background {
+  min-height: 100vh;
+  background-color: #6670a3;
+  padding: 40px 24px;
+}
+
+.page-title {
+  text-align: center;
+  color: white;
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.events-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.event-card {
+  background: #f4f4f4;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.event-badge {
+  align-self: flex-start;
+  background: #4d8df7;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.event-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e2a5a;
+  margin: 0;
+}
+
+.event-description {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.event-details {
+  background: #e9ecf7;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.event-meta {
+  font-size: 14px;
+  color: #222;
+  margin: 6px 0;
+}
+
+.event-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.remind-button,
+.details-button {
+  border: none;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remind-button {
+  background: #4d8df7;
+  color: white;
+}
+
+.remind-button:hover {
+  background: #2f6fda;
+}
+
+.remind-button.active {
+  background: #28a745;
+}
+
+.details-button {
+  background: white;
+  color: #1e2a5a;
+  border: 2px solid #4d8df7;
+}
+
+.details-button:hover {
+  background: #eef4ff;
+}
+
+.dining-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.dining-card {
+  background: #f4f4f4;
+  border-radius: 22px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.dining-badge {
+  display: inline-block;
+  background: #4d8df7;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.dining-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1e2a5a;
+}
+
+.dining-description {
+  font-size: 14px;
+  margin: 10px 0;
+  color: #333;
+}
+
+.dining-location {
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.dining-button {
+  background: #4d8df7;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.dining-button:hover {
+  background: #2f6fda;
+}
+
+.map-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-modal {
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #4d8df7;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.map-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.map-address {
+  margin-bottom: 15px;
+}

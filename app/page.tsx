@@ -1,104 +1,53 @@
 "use client";
 
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import "./styles/home.css";
 
 export default function Home() {
-  const router = useRouter(); // added router so we can navigate pages
-
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState("Events");
   const tabs = ["Events", "Buildings", "Dining", "Clubs"];
 
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "linear-gradient(to bottom, #32417b, #84848e)",
-        fontFamily: "Helvetica",
-      }}
-    >
-      <h1 style={{ fontSize: "80px", color: "white", marginBottom: "20px" }}>
-        FindMap
-      </h1>
+    <main className="home-page">
+      <h1 className="home-title">FindMap</h1>
 
-      <p
-        style={{
-          color: "white",
-          fontWeight: "bold",
-          marginBottom: "30px",
-        }}
-      >
+      <p className="home-subtitle">
         FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
       </p>
 
-      {/* Tabs */}
-      <div
-        style={{
-          display: "flex",
-          gap: "12px",
-          marginBottom: "30px",
-        }}
-      >
+      <div className="tabs-row">
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => {
-              setActiveTab(tab); // keeps the tab highlighted
-              router.push(`/${tab.toLowerCase()}`); // sends user to that page
+              setActiveTab(tab);
+              router.push(`/${tab.toLowerCase()}`);
             }}
-            style={{
-              padding: "8px 18px",
-              borderRadius: "20px",
-              border: "none",
-              cursor: "pointer",
-              fontWeight: "bold",
-              backgroundColor: activeTab === tab ? "#4285F4" : "white",
-              color: activeTab === tab ? "white" : "black",
-              boxShadow:
-                activeTab === tab
-                  ? "0 4px 10px rgba(0,0,0,0.2)"
-                  : "none",
-              transition: "0.2s",
-            }}
+            className={`tab-button ${
+              activeTab === tab ? "active-tab" : ""
+            } preview-${tab.toLowerCase()}`}
           >
             {tab}
           </button>
         ))}
       </div>
 
-      {/* Dynamic Content */}
-      <div
-        style={{
-          backgroundColor: "white",
-          padding: "20px",
-          borderRadius: "15px",
-          width: "300px",
-          color: "black",
-          fontWeight: "bold",
-          textAlign: "center",
-          marginBottom: "30px",
-        }}
-      >
-        <h3>{activeTab}</h3>
-        <p>Showing {activeTab.toLowerCase()} near you.</p>
+      <div className="cougar-wrapper">
+        <Image
+          src="/images/cougar.png"
+          alt="Kean Cougar"
+          width={220}
+          height={220}
+          className="cougar-image"
+        />
       </div>
 
-      {/* Main Button */}
       <button
         onClick={() => router.push("/events")}
-        style={{
-          padding: "12px 25px",
-          borderRadius: "30px",
-          border: "none",
-          fontWeight: "bold",
-          backgroundColor: "#2a80d6",
-          color: "white",
-          cursor: "pointer",
-        }}
+        className="main-button"
       >
         Explore Campus Events
       </button>

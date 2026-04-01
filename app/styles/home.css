@@ -1,0 +1,129 @@
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #32417b, #84848e);
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 80px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.home-subtitle {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.tabs-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tab-button {
+  position: relative;
+  padding: 10px 22px;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: white;
+  color: black;
+  transition: 0.25s ease;
+  overflow: hidden;
+}
+
+.active-tab {
+  background-color: #4285f4;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.tab-button:hover {
+  transform: translateY(-2px);
+  color: white;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.18);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.tab-button:hover::after {
+  opacity: 1;
+}
+
+.preview-events:hover {
+  background: linear-gradient(rgba(66, 133, 244, 0.78), rgba(66, 133, 244, 0.78)),
+    url("/images/events-preview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.preview-buildings:hover {
+  background: linear-gradient(rgba(66, 133, 244, 0.78), rgba(66, 133, 244, 0.78)),
+    url("/images/buildings-preview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.preview-dining:hover {
+  background: linear-gradient(rgba(66, 133, 244, 0.78), rgba(66, 133, 244, 0.78)),
+    url("/images/dining-preview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.preview-clubs:hover {
+  background: linear-gradient(rgba(66, 133, 244, 0.78), rgba(66, 133, 244, 0.78)),
+    url("/images/clubs-preview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.cougar-wrapper {
+  margin-bottom: 30px;
+}
+
+.cougar-image {
+  width: 220px;
+  height: auto;
+}
+
+.main-button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  background-color: #2a80d6;
+  color: white;
+  cursor: pointer;
+}
+
+.main-button:hover {
+  background-color: #1f6fbe;
+}
+
+.cougar-wrapper {
+  margin-bottom: 30px;
+}
+
+.cougar-image {
+  width: 220px;
+  height: auto;
+}
