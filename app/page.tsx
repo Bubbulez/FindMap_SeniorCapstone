@@ -8,7 +8,7 @@ import "./styles/home.css";
 export default function Home() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Events");
-  const tabs = ["Events", "Buildings", "Dining", "Clubs"];
+  const tabs = ["Events", "Buildings", "Dining", "Clubs", "Account", "Settings"];
 
   return (
     <main className="home-page">
