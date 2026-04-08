@@ -1,4 +1,3 @@
-import "../styles/clubs.css";
 import { clubs } from "../data/clubs";
 
 export default function ClubsPage() {

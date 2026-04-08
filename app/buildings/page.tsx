@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { locations, type Location } from "../data/locations";
-import "../styles/buildings.css";
 
 export default function BuildingsPage() {
   const [selectedBuilding, setSelectedBuilding] = useState<Location | null>(null);
