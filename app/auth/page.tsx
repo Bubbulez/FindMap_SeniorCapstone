@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import "./styles/home.css";
+import "../styles/home.css";
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
-    setIsLoggedIn(!!currentUser);
+    setIsLoggedIn(Boolean(currentUser));
   }, []);
 
   const handleAccountClick = () => {
@@ -26,24 +26,24 @@ export default function Home() {
 
   return (
     <main className="findmap-home">
-      
-      {/* TOP RIGHT (ICON + AUTH LINKS) */}
       <div className="findmap-topbar">
-        
         <button
           type="button"
           className="findmap-account-icon"
           onClick={handleAccountClick}
+          aria-label="Account"
         >
           👤
         </button>
 
         {!isLoggedIn ? (
-          <div className="findmap-auth-links">
-            <span onClick={() => router.push("/signup")}>Sign Up</span>
-            <span className="divider"> / </span>
-            <span onClick={() => router.push("/signin")}>Log In</span>
-          </div>
+          <button
+            type="button"
+            className="findmap-auth-link"
+            onClick={() => router.push("/auth")}
+          >
+            Sign Up / Log In
+          </button>
         ) : (
           <button
             type="button"
@@ -55,7 +55,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* HERO SECTION */}
       <section className="findmap-hero">
         <h1 className="findmap-title">FindMap</h1>
 
@@ -63,9 +62,9 @@ export default function Home() {
           FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
         </p>
 
-        {/* TABS */}
         <div className="findmap-tabs">
           <button
+            type="button"
             className="findmap-tab"
             onClick={() => router.push("/events")}
           >
@@ -73,6 +72,7 @@ export default function Home() {
           </button>
 
           <button
+            type="button"
             className="findmap-tab"
             onClick={() => router.push("/buildings")}
           >
@@ -80,6 +80,7 @@ export default function Home() {
           </button>
 
           <button
+            type="button"
             className="findmap-tab"
             onClick={() => router.push("/dining")}
           >
@@ -87,6 +88,7 @@ export default function Home() {
           </button>
 
           <button
+            type="button"
             className="findmap-tab"
             onClick={() => router.push("/clubs")}
           >
@@ -94,7 +96,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* IMAGE */}
         <div className="findmap-image-wrap">
           <Image
             src="/images/cougar.png"
@@ -106,8 +107,8 @@ export default function Home() {
           />
         </div>
 
-        {/* MAIN BUTTON */}
         <button
+          type="button"
           className="findmap-main-btn"
           onClick={() => router.push("/events")}
         >
