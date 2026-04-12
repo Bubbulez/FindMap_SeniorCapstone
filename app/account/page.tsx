@@ -9,10 +9,6 @@ type UserData = {
   email: string;
   username: string;
   password?: string;
-  phoneNumber: string;
-  membershipPlan: string;
-  favoriteGenre: string;
-  role?: "customer" | "organizer";
 };
 
 export default function AccountPage() {
@@ -22,13 +18,8 @@ export default function AccountPage() {
     fullName: "",
     email: "",
     username: "",
-    phoneNumber: "",
-    membershipPlan: "Free",
-    favoriteGenre: "",
-    role: "customer",
+    password: "",
   });
-
-  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const savedCurrentUser = localStorage.getItem("currentUser");
@@ -40,29 +31,15 @@ export default function AccountPage() {
     }
   }, [router]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-
-    setUserData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSave = () => {
-    localStorage.setItem("currentUser", JSON.stringify(userData));
-
+  const handleDeleteAccount = () => {
     const savedUsers = localStorage.getItem("users");
     const users: UserData[] = savedUsers ? JSON.parse(savedUsers) : [];
 
-    const updatedUsers = users.map((user) =>
-      user.email === userData.email ? { ...user, ...userData } : user
-    );
+    const updatedUsers = users.filter((user) => user.email !== userData.email);
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
-    setMessage("Account settings saved successfully.");
+    localStorage.removeItem("currentUser");
+    router.push("/signup");
   };
 
   const handleLogout = () => {
@@ -71,110 +48,69 @@ export default function AccountPage() {
   };
 
   return (
-    <main className="page-background">
-      <h1 className="page-title">My Account</h1>
-
-      <div className="event-card account-card">
-        <p className="account-subtitle">
-          Manage your profile information below.
+    <main className="dashboard-page">
+      <div className="dashboard-header">
+        <p className="dashboard-small-title">My Account</p>
+        <h1 className="dashboard-main-title">
+          Welcome back, {userData.username || "User"}!
+        </h1>
+        <p className="dashboard-subtitle">
+          Manage your account information and account actions here.
         </p>
+      </div>
 
-        <div className="account-form">
-          <div className="account-field">
-            <label htmlFor="fullName">Full Name</label>
-            <input
-              id="fullName"
-              type="text"
-              name="fullName"
-              value={userData.fullName}
-              onChange={handleChange}
-            />
+      <section className="dashboard-grid single-column-grid">
+        <div className="dashboard-card">
+          <h2 className="dashboard-card-title">Profile Information</h2>
+
+          <div className="dashboard-info-list">
+            <p>
+              <strong>Full Name:</strong> {userData.fullName || "Not added"}
+            </p>
+            <p>
+              <strong>Email:</strong> {userData.email || "Not added"}
+            </p>
+            <p>
+              <strong>Username:</strong> {userData.username || "Not added"}
+            </p>
           </div>
 
-          <div className="account-field">
-            <label htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleChange}
-            />
+          <button
+            className="dashboard-button"
+            onClick={() => router.push("/settings")}
+          >
+            Edit Profile
+          </button>
+        </div>
+
+        <div className="dashboard-card">
+          <h2 className="dashboard-card-title">Account Actions</h2>
+
+          <div className="dashboard-info-list">
+            <p>Update your information or manage your account access here.</p>
           </div>
 
-          <div className="account-field">
-            <label htmlFor="username">Username</label>
-            <input
-              id="username"
-              type="text"
-              name="username"
-              value={userData.username}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              id="phoneNumber"
-              type="text"
-              name="phoneNumber"
-              value={userData.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="membershipPlan">Membership Plan</label>
-            <select
-              id="membershipPlan"
-              name="membershipPlan"
-              value={userData.membershipPlan}
-              onChange={handleChange}
+          <div className="dashboard-action-group">
+            <button
+              className="dashboard-button"
+              onClick={() => router.push("/settings")}
             >
-              <option value="Free">Free</option>
-              <option value="Basic">Basic</option>
-              <option value="Premium">Premium</option>
-            </select>
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="favoriteGenre">Favorite Genre</label>
-            <input
-              id="favoriteGenre"
-              type="text"
-              name="favoriteGenre"
-              value={userData.favoriteGenre}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="role">Account Type</label>
-            <select
-              id="role"
-              name="role"
-              value={userData.role || "customer"}
-              onChange={handleChange}
-            >
-              <option value="customer">Customer</option>
-              <option value="organizer">Organizer</option>
-            </select>
-          </div>
-
-          <div className="account-button-row">
-            <button className="account-save-btn" onClick={handleSave}>
-              Save Changes
+              Edit Account
             </button>
 
-            <button className="account-logout-btn" onClick={handleLogout}>
+            <button
+              className="dashboard-outline-button"
+              onClick={handleDeleteAccount}
+            >
+              Delete Account
+            </button>
+
+            <button className="dashboard-button" onClick={handleLogout}>
               Log Out
             </button>
           </div>
-
-          {message && <p className="account-message">{message}</p>}
         </div>
-      </div>
+      </section>
     </main>
   );
 }

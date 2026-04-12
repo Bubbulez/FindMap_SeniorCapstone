@@ -9,10 +9,6 @@ type User = {
   email: string;
   username: string;
   password: string;
-  phoneNumber: string;
-  membershipPlan: string;
-  favoriteGenre: string;
-  role: "customer" | "organizer";
 };
 
 export default function SignupPage() {
@@ -23,17 +19,11 @@ export default function SignupPage() {
     email: "",
     username: "",
     password: "",
-    phoneNumber: "",
-    membershipPlan: "Free",
-    favoriteGenre: "",
-    role: "customer",
   });
 
   const [message, setMessage] = useState("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setFormData((prev) => ({
@@ -43,27 +33,9 @@ export default function SignupPage() {
   };
 
   const handleSignup = () => {
-    const {
-      fullName,
-      email,
-      username,
-      password,
-      phoneNumber,
-      membershipPlan,
-      favoriteGenre,
-      role,
-    } = formData;
+    const { fullName, email, username, password } = formData;
 
-    if (
-      !fullName ||
-      !email ||
-      !username ||
-      !password ||
-      !phoneNumber ||
-      !membershipPlan ||
-      !favoriteGenre ||
-      !role
-    ) {
+    if (!fullName || !email || !username || !password) {
       setMessage("Please fill in all fields.");
       return;
     }
@@ -97,9 +69,7 @@ export default function SignupPage() {
       <h1 className="page-title">Sign Up</h1>
 
       <div className="event-card account-card">
-        <p className="account-subtitle">
-          Create your FindMap account below.
-        </p>
+        <p className="account-subtitle">Create your FindMap account below.</p>
 
         <div className="account-form">
           <div className="account-field">
@@ -144,55 +114,6 @@ export default function SignupPage() {
               value={formData.password}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="phoneNumber">Phone Number</label>
-            <input
-              id="phoneNumber"
-              name="phoneNumber"
-              type="text"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="membershipPlan">Membership Plan</label>
-            <select
-              id="membershipPlan"
-              name="membershipPlan"
-              value={formData.membershipPlan}
-              onChange={handleChange}
-            >
-              <option value="Free">Free</option>
-              <option value="Basic">Basic</option>
-              <option value="Premium">Premium</option>
-            </select>
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="favoriteGenre">Favorite Genre</label>
-            <input
-              id="favoriteGenre"
-              name="favoriteGenre"
-              type="text"
-              value={formData.favoriteGenre}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="account-field">
-            <label htmlFor="role">Account Type</label>
-            <select
-              id="role"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-            >
-              <option value="customer">Customer</option>
-              <option value="organizer">Organizer</option>
-            </select>
           </div>
 
           <button className="account-save-btn" onClick={handleSignup}>
