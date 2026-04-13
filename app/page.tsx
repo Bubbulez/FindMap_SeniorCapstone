@@ -7,7 +7,12 @@ import "./styles/home.css";
 
 export default function Home() {
   const router = useRouter();
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+  const [showReminderModal, setShowReminderModal] = useState(false);
+  const [contactValue, setContactValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
@@ -24,12 +29,55 @@ export default function Home() {
     }
   };
 
+  const handleNotification = () => {
+    setShowReminderModal(true);
+  };
+
+  const handleSendReminder = async () => {
+    if (!contactValue.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const response = await fetch("/api/send-reminder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: contactValue,
+          message: "Your FindMap reminder has been set successfully!",
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to send reminder.");
+      }
+
+      setShowReminderModal(false);
+      setContactValue("");
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      alert("There was a problem sending the email reminder.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="findmap-home">
-      
       {/* TOP RIGHT (ICON + AUTH LINKS) */}
       <div className="findmap-topbar">
-        
         <button
           type="button"
           className="findmap-account-icon"
@@ -106,13 +154,68 @@ export default function Home() {
           />
         </div>
 
-        {/* MAIN BUTTON */}
-        <button
-          className="findmap-main-btn"
-          onClick={() => router.push("/events")}
-        >
-          Explore Campus Events
-        </button>
+        {/* MAIN BUTTONS */}
+        <div className="button-group">
+          <button
+            className="findmap-main-btn"
+            onClick={() => router.push("/events")}
+          >
+            Explore Campus Events
+          </button>
+
+          <button
+            className="findmap-main-btn"
+            onClick={handleNotification}
+          >
+            Set Reminder 🔔
+          </button>
+        </div>
+
+        {/* SUCCESS NOTIFICATION */}
+        {showNotification && (
+          <div className="notification-box">
+            Reminder email sent successfully!
+          </div>
+        )}
+
+        {/* REMINDER MODAL */}
+        {showReminderModal && (
+          <div className="modal-overlay">
+            <div className="reminder-modal">
+              <h2>Set a Reminder</h2>
+
+              <label className="modal-label">Enter your email:</label>
+
+              <input
+                type="email"
+                value={contactValue}
+                onChange={(e) => setContactValue(e.target.value)}
+                placeholder="example@gmail.com"
+                className="modal-input"
+              />
+
+              <div className="modal-buttons">
+                <button
+                  onClick={handleSendReminder}
+                  className="findmap-main-btn"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Send Reminder"}
+                </button>
+
+                <button
+                  onClick={() => {
+                    setShowReminderModal(false);
+                    setContactValue("");
+                  }}
+                  className="cancel-button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </main>
   );
