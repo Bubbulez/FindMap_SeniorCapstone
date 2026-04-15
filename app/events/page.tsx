@@ -18,13 +18,11 @@ export default function EventsPage() {
   return (
     <main className="page-background">
       <h1 className="page-title">Events</h1>
-
-      <div style={{ textAlign: "center", marginBottom: "24px" }}>
+ <div style={{ textAlign: "center", marginBottom: "24px" }}>
         <Link href="/calender" className="details-button" style={{ display: "inline-block" }}>
           Calendar View
         </Link>
       </div>
-
       <div className="events-grid">
         {events.map((event, index) => {
           const isReminded = reminders.includes(index);
