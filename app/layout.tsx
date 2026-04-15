@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
+import "./styles/home.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,15 +19,18 @@ export const metadata: Metadata = {
   description: "Concert ticket website",
 };
 
-// app/layout.tsx
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Link href="/" className="logo-home">
+          K
+        </Link>
+
         {children}
       </body>
     </html>
