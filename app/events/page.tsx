@@ -6,6 +6,7 @@ import { events } from "../data/events";
 
 export default function EventsPage() {
   const [reminders, setReminders] = useState<number[]>([]);
+  const [showToast, setShowToast] = useState(false);
 
   const toggleReminder = (index: number) => {
     setReminders((prev) =>
@@ -13,13 +14,43 @@ export default function EventsPage() {
         ? prev.filter((item) => item !== index)
         : [...prev, index]
     );
+
+    setShowToast(true);
+
+    setTimeout(() =>
+    {
+      setShowToast(false);
+    }, 3000);
   };
 
   return (
     <main className="page-background">
+      {showToast && (
+  <div
+    style={{
+      position: "fixed",
+      top: "20px",
+      right: "20px",
+      backgroundColor: "green",
+      color: "white",
+      padding: "12px 18px",
+      borderRadius: "10px",
+      fontSize: "14px",
+      fontWeight: "bold",
+      zIndex: 9999,
+    }}
+  >
+    Reminder has been sent to email
+  </div>
+)}
+
       <h1 className="page-title">Events</h1>
  <div style={{ textAlign: "center", marginBottom: "24px" }}>
-        <Link href="/calender" className="details-button" style={{ display: "inline-block" }}>
+        <Link 
+        href="/calender" 
+        className="details-button" 
+        style={{ display: "inline-block" }}
+        >
           Calendar View
         </Link>
       </div>
@@ -51,7 +82,7 @@ export default function EventsPage() {
                   className={isReminded ? "remind-button active" : "remind-button"}
                   onClick={() => toggleReminder(index)}
                 >
-                  {isReminded ? "Reminder Set ✓" : "Remind Me"}
+                  {isReminded ? "Reminder Set ✓" : "Remind Me🔔"}
                 </button>
 
                 <a href={event.link} className="details-button">
