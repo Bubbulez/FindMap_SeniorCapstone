@@ -82,31 +82,31 @@ export default function Home() {
   return (
     <main className="findmap-home">
       {/* TOP RIGHT (ICON + AUTH LINKS) */}
-      <div className="findmap-topbar">
-        <button
-          type="button"
-          className="findmap-account-icon"
-          onClick={handleAccountClick}
-        >
-          👤
-        </button>
+    <div className="findmap-topbar">
+  <button
+    type="button"
+    className="findmap-account-icon"
+    onClick={handleAccountClick}
+  >
+    👤
+  </button>
 
-        {!isLoggedIn ? (
-          <div className="findmap-auth-links">
-            <span onClick={() => router.push("/signup")}>Sign Up</span>
-            <span className="divider"> / </span>
-            <span onClick={() => router.push("/signin")}>Log In</span>
-          </div>
-        ) : (
-          <button
-            type="button"
-            className="findmap-auth-btn"
-            onClick={() => router.push("/account")}
-          >
-            My Account
-          </button>
-        )}
-      </div>
+  {!isLoggedIn ? (
+    <div className="findmap-auth-links">
+      <span onClick={() => router.push("/signup")}>Sign Up</span>
+      <span className="divider"> / </span>
+      <span onClick={() => router.push("/signin")}>Log In</span>
+    </div>
+  ) : (
+    <button
+      type="button"
+      className="findmap-auth-btn"
+      onClick={() => router.push("/account")}
+    >
+      My Account
+    </button>
+  )}
+</div>
 
       {/* HERO SECTION */}
       <section className="findmap-hero">
@@ -161,66 +161,10 @@ export default function Home() {
 
         {/* MAIN BUTTONS */}
         <div className="button-group">
-          <button
-            className="findmap-main-btn"
-            onClick={() => router.push("/events")}
-          >
+          <div className="findmap-main-btn">
             Explore Campus Events
-          </button>
-
-          <button
-            className="findmap-main-btn"
-            onClick={handleNotification}
-          >
-            Set Reminder 🔔
-          </button>
-        </div>
-
-        {/* SUCCESS NOTIFICATION */}
-        {showNotification && (
-          <div className="notification-box">
-            Reminder email sent successfully!
           </div>
-        )}
-
-        {/* REMINDER MODAL */}
-        {showReminderModal && (
-          <div className="modal-overlay">
-            <div className="reminder-modal">
-              <h2>Set a Reminder</h2>
-
-              <label className="modal-label">Enter your email:</label>
-
-              <input
-                type="email"
-                value={contactValue}
-                onChange={(e) => setContactValue(e.target.value)}
-                placeholder="example@gmail.com"
-                className="modal-input"
-              />
-
-              <div className="modal-buttons">
-                <button
-                  onClick={handleSendReminder}
-                  className="findmap-main-btn"
-                  disabled={loading}
-                >
-                  {loading ? "Sending..." : "Send Reminder"}
-                </button>
-
-                <button
-                  onClick={() => {
-                    setShowReminderModal(false);
-                    setContactValue("");
-                  }}
-                  className="cancel-button"
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        </div> 
       </section>
     </main>
   );
