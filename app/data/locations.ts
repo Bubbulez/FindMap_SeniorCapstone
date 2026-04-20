@@ -9,7 +9,7 @@ export const locations: Location[] = [
     title: "Downs Hall",
     address: "Kean University, 1000 Morris Ave, Union, NJ 07083",
     embedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3065.264606152972!2d-74.23368436118413!3d40.67693639284971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad5ca13190f5%3A0x1a26549323e715a7!2sDowns%20Hall!5e1!3m2!1sen!2sus!4v1776273912891!5m2!1sen!2sus" ,
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3065.264606152972!2d-74.23368436118413!3d40.67693639284971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad5ca13190f5%3A0x1a26549323e715a7!2sDowns%20Hall!5e1!3m2!1sen!2sus!4v1776273912891!5m2!1sen!2sus",
   },
   {
     title: "North Avenue Academic Building [NAAB]",
@@ -73,6 +73,6 @@ export const locations: Location[] = [
     title: "Hutchinson Hall",
     address: "Kean University, Hutchinson Hall, 1000 Morris Ave, Union, NJ 07083",
     embedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3025.79!2d-74.2300!3d40.6798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad5bcd58585d%3A0x89e8312e73738092!2sHutchinson%20Hall!5e1!3m2!1sen!2sus!4v1713214440000!5m2!1sen!2sus",
-  },
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6130.274502344511!2d-74.23622122393093!3d40.679706171398486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad5ca13190f5%3A0x3ce9b9786df4b4da!2sHutchinson%20Hall!5e1!3m2!1sen!2sus!4v1776700002505!5m2!1sen!2sus",
+  }
 ];

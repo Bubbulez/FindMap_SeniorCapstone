@@ -12,19 +12,27 @@ export default function BuildingsPage() {
     loc.address.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // BRAND COLOR DEFINITION
+  const keanBlue = "#2a58ad";
+
   return (
     <main style={{ 
       minHeight: "100vh", 
       width: "100%",
-      backgroundColor: "#f9f9f9", 
-      borderRadius: "15px", 
-      border: "2px dashed #ccc",
+      backgroundColor: "#ebf2ff", // Light blue tint to match FindMap background feel
       padding: "40px",
       boxSizing: "border-box"
     }}>
       
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold", marginBottom: "20px", color: "#333" }}>
+        {/* Title updated to Kean Blue */}
+        <h1 style={{ 
+          fontSize: "2.5rem", 
+          fontWeight: "bold", 
+          marginBottom: "30px", 
+          color: keanBlue,
+          textAlign: "center" 
+        }}>
           Campus Buildings
         </h1>
 
@@ -39,16 +47,18 @@ export default function BuildingsPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
                 width: "100%",
-                padding: "12px",
+                padding: "15px",
                 marginBottom: "20px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
+                borderRadius: "25px", // Rounded like the Home buttons
+                border: `2px solid ${keanBlue}`,
                 color: "black",
-                backgroundColor: "white"
+                backgroundColor: "white",
+                outline: "none",
+                fontSize: "1rem"
               }}
             />
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxHeight: "600px", overflowY: "auto" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxHeight: "600px", overflowY: "auto", paddingRight: "10px" }}>
               {filteredBuildings.map((loc) => (
                 <button
                   key={loc.title}
@@ -56,28 +66,40 @@ export default function BuildingsPage() {
                   style={{
                     textAlign: "left",
                     padding: "15px",
-                    borderRadius: "10px",
-                    border: selectedBuilding?.title === loc.title ? "2px solid #0070f3" : "1px solid #eee",
-                    backgroundColor: selectedBuilding?.title === loc.title ? "#f0f7ff" : "white",
+                    borderRadius: "15px",
+                    // Use Kean Blue for the border and shadow when selected
+                    border: selectedBuilding?.title === loc.title ? `2px solid ${keanBlue}` : "1px solid #ddd",
+                    backgroundColor: "white",
+                    boxShadow: selectedBuilding?.title === loc.title ? `0 4px 12px rgba(42, 88, 173, 0.2)` : "none",
                     cursor: "pointer",
-                    transition: "all 0.2s"
+                    transition: "all 0.2s ease"
                   }}
                 >
-                  <div style={{ fontWeight: "bold", fontSize: "1.1rem", color: "#333" }}>{loc.title}</div>
-                  <div style={{ fontSize: "0.85rem", color: "#666" }}>{loc.address}</div>
+                  <div style={{ 
+                    fontWeight: "bold", 
+                    fontSize: "1.1rem", 
+                    color: selectedBuilding?.title === loc.title ? keanBlue : "#333" 
+                  }}>
+                    {loc.title}
+                  </div>
+                  <div style={{ fontSize: "0.85rem", color: "#666", marginTop: "4px" }}>{loc.address}</div>
                 </button>
               ))}
             </div>
           </div>
 
           {/* --- RIGHT SIDE: Dynamic Map --- */}
-          <div style={{ flex: 1, padding: "20px" }}>
+          <div style={{ flex: 1 }}>
             {selectedBuilding ? (
               <iframe
                 src={selectedBuilding.embedUrl}
                 width="100%"
-                height="600"
-                style={{ border: "1px solid #ddd", borderRadius: "15px" }}
+                height="650"
+                style={{ 
+                  border: `3px solid white`, 
+                  borderRadius: "25px", 
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)" 
+                }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -85,20 +107,20 @@ export default function BuildingsPage() {
             ) : (
               <div
                 style={{
-                  height: "600px",
+                  height: "650px",
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                  backgroundColor: "#ffffff",
-                  border: "2px dashed #ccc",
-                  borderRadius: "15px",
-                  color: "#666",
+                  backgroundColor: "rgba(255, 255, 255, 0.6)",
+                  border: `2px dashed ${keanBlue}`,
+                  borderRadius: "25px",
+                  color: keanBlue,
                 }}
               >
-                <p style={{ fontSize: "1.2rem", fontWeight: "500" }}>
-                  Select a building on the left to view it on the map
+                <p style={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                  Select a building to view the map
                 </p>
               </div>
             )}

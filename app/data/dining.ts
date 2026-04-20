@@ -5,15 +5,15 @@ export const dining = [
     category: "On Campus",
     description: "Main campus dining spot with burgers, sandwiches, and quick meals.",
     location: "Miron Student Center",
-    embedUrl: "https://www.google.com/maps?q=Cougars+Den+Kean+University&output=embed",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6130.454222055068!2d-74.23715852393096!3d40.67775187139891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad003a9b7e55%3A0xaa18f2cf1c22835f!2sCougars%20Den%20-%20Kean%20University!5e1!3m2!1sen!2sus!4v1776704655693!5m2!1sen!2sus",
     type: "on-campus"
   },
   {
-    name: "Kean’s Kitchen",
+    name: "Keanu’s Kitchen",
     category: "On Campus",
     description: "Dining hall with a variety of meal options for students.",
     location: "Kean University",
-    embedUrl: "https://www.google.com/maps?q=Keans+Kitchen+Kean+University&output=embed",
+    embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1532.6388843111056!2d-74.23664659713684!3d40.676650120133594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3ad595438d481%3A0x4bc8de19fa83e380!2sNew%20Upperclass%20Dining%20Hall!5e1!3m2!1sen!2sus!4v1776704189124!5m2!1sen!2sus",
     type: "on-campus"
   },
   {
