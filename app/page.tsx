@@ -83,30 +83,25 @@ export default function Home() {
     <main className="findmap-home">
       {/* TOP RIGHT (ICON + AUTH LINKS) */}
     <div className="findmap-topbar">
-  <button
+      <div className="account-wrapper">
+     <button
     type="button"
     className="findmap-account-icon"
-    onClick={handleAccountClick}
+   // onClick={handleAccountClick}
   >
     👤
   </button>
 
   {!isLoggedIn ? (
-    <div className="findmap-auth-links">
-      <span onClick={() => router.push("/signup")}>Sign Up</span>
-      <span className="divider"> / </span>
-      <span onClick={() => router.push("/signin")}>Log In</span>
+    <div className="dropdown-menu">
+      <div onClick={() => router.push("/signup")}>Sign Up</div>
+      <div onClick={() => router.push("/signin")}>Log In</div>
     </div>
-  ) : (
-    <button
-      type="button"
-      className="findmap-auth-btn"
-      onClick={() => router.push("/account")}
-    >
-      My Account
-    </button>
-  )}
-</div>
+  
+  ) : null}
+ 
+  </div>
+  </div>
 
       {/* HERO SECTION */}
       <section className="findmap-hero">
@@ -115,6 +110,13 @@ export default function Home() {
         <p className="findmap-subtitle">
           FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
         </p>
+        <p>
+
+
+        </p>
+        <p className="findmap-subtitle">
+          Where do you want to go?
+        </p>
 
         {/* TABS */}
         <div className="findmap-tabs">
@@ -122,28 +124,28 @@ export default function Home() {
             className="findmap-tab"
             onClick={() => router.push("/events")}
           >
-            Events
+            Events📍
           </button>
 
           <button
             className="findmap-tab"
             onClick={() => router.push("/buildings")}
           >
-            Buildings
+            Buildings🏢
           </button>
 
           <button
             className="findmap-tab"
             onClick={() => router.push("/dining")}
           >
-            Dining
+            Dining🍽️
           </button>
 
           <button
             className="findmap-tab"
             onClick={() => router.push("/clubs")}
           >
-            Clubs
+            Clubs🎭
           </button>
         </div>
 

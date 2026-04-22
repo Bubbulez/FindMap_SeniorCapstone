@@ -8,20 +8,58 @@ export default function EventsPage() {
   const [reminders, setReminders] = useState<number[]>([]);
   const [showToast, setShowToast] = useState(false);
 
-  const toggleReminder = (index: number) => {
-    setReminders((prev) =>
-      prev.includes(index)
-        ? prev.filter((item) => item !== index)
-        : [...prev, index]
-    );
+ const toggleReminder = async (index: number) => {
+  const event = events[index];
+
+  try {
+    const response = await fetch("/api/send-reminder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "yourrealemail@gmail.com",
+        eventTitle: event.title,
+        date: event.date,
+        time: event.time,
+        location: event.location,
+      }),
+    });
+
+   const text = await response.text();
+console.log("API response:", text);
+
+let data;
+try {
+  data = JSON.parse(text);
+} catch {
+  throw new Error("Server did not return valid JSON.");
+}
+
+if (!response.ok) {
+  alert(data.message || "Failed to send reminder.");
+  return;
+}
+
+    // ✅ Show as "Reminder Set"
+    setReminders((prev) => [...prev, index]);
 
     setShowToast(true);
 
-    setTimeout(() =>
-    {
+    setTimeout(() => {
       setShowToast(false);
     }, 3000);
-  };
+
+    // ✅ After 3 seconds, remove it
+    setTimeout(() => {
+      setReminders((prev) => prev.filter((item) => item !== index));
+    }, 3000);
+
+  } catch (error) {
+    console.error(error);
+    alert("There was a problem sending the reminder email.");
+  }
+};
 
   return (
     <main className="page-background">
