@@ -1,182 +1,138 @@
-export const events = [
+// app/data/events.ts
+
+export type Event = {
+  id: number;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  category: string;
+  link?: string;
+};
+
+export const events: Event[] = [
+  // --- TUESDAY, APRIL 21, 2026 ---
   {
-    title: "Welcome Week Carnival",
-    category: "Fun",
-    description: "Music, games, food trucks, and student org booths to kick off the semester.",
-    date: "September 3, 2026",
-    time: "2:00 PM - 6:00 PM",
-    location: "Miron Student Center Lawn",
-    link: "#"
-  },
-  {
-    title: "Free T-Shirt Friday",
-    category: "Giveaway",
-    description: "Grab a free Kean shirt while supplies last.",
-    date: "September 4, 2026",
-    time: "12:00 PM - 2:00 PM",
-    location: "Downs Hall Plaza",
-    link: "#"
-  },
-  {
-    title: "Study Skills Workshop",
-    category: "Educational",
-    description: "Learn time management and exam prep strategies.",
-    date: "September 10, 2026",
-    time: "1:00 PM - 2:30 PM",
-    location: "Center for Academic Success",
-    link: "#"
-  },
-  {
-    title: "Campus Movie Night",
-    category: "Fun",
-    description: "Outdoor movie with popcorn and snacks.",
-    date: "September 12, 2026",
-    time: "7:30 PM - 10:00 PM",
-    location: "East Campus Lawn",
-    link: "#"
-  },
-  {
-    title: "Club Fair",
-    category: "Fun",
-    description: "Meet student organizations and get involved.",
-    date: "September 15, 2026",
-    time: "1:00 PM - 4:00 PM",
-    location: "Harwood Arena",
-    link: "#"
-  },
-  {
-    title: "Resume Building Workshop",
-    category: "Educational",
-    description: "Get help creating or improving your resume.",
-    date: "September 18, 2026",
-    time: "3:00 PM - 4:30 PM",
-    location: "Nancy Thompson Library",
-    link: "#"
-  },
-  {
-    title: "Coffee & Donuts Giveaway",
-    category: "Giveaway",
-    description: "Free coffee and donuts for students in the morning.",
-    date: "September 22, 2026",
-    time: "9:00 AM - 11:00 AM",
-    location: "Hutchinson Hall Lobby",
-    link: "#"
-  },
-  {
-    title: "Midterm Reminder Booth",
-    category: "Reminder",
-    description: "Get study tips and midterm schedules.",
-    date: "October 1, 2026",
-    time: "11:00 AM - 2:00 PM",
-    location: "Library Lobby",
-    link: "#"
-  },
-  {
-    title: "Pumpkin Painting Event",
-    category: "Fun",
-    description: "Relax with pumpkin painting and music.",
-    date: "October 20, 2026",
-    time: "4:00 PM - 6:00 PM",
-    location: "GLAB Courtyard",
-    link: "#"
-  },
-  {
-    title: "Free Hoodie Giveaway",
-    category: "Giveaway",
-    description: "Limited free hoodies for students.",
-    date: "October 25, 2026",
-    time: "12:00 PM - 2:00 PM",
-    location: "Student Center",
-    link: "#"
-  },
-  {
-    title: "Financial Aid Info Session",
-    category: "Educational",
-    description: "Learn about FAFSA and scholarships.",
-    date: "October 28, 2026",
-    time: "2:00 PM - 3:30 PM",
-    location: "NAAB Building",
-    link: "#"
-  },
-  {
-    title: "Registration Help Desk",
-    category: "Reminder",
-    description: "Assistance with course registration.",
-    date: "November 3, 2026",
-    time: "10:00 AM - 1:00 PM",
-    location: "CAS Center",
-    link: "#"
-  },
-  {
-    title: "Game Night",
-    category: "Fun",
-    description: "Board games, video games, and prizes.",
-    date: "November 6, 2026",
-    time: "6:00 PM - 9:00 PM",
-    location: "Student Center",
-    link: "#"
-  },
-  {
-    title: "Free Planner Distribution",
-    category: "Giveaway",
-    description: "Pick up a free academic planner.",
-    date: "November 10, 2026",
-    time: "11:00 AM - 2:00 PM",
-    location: "Library Lobby",
-    link: "#"
-  },
-  {
-    title: "Career Fair",
-    category: "Educational",
-    description: "Meet employers and explore job opportunities.",
-    date: "November 15, 2026",
+    id: 1,
+    title: "A Taste From Around the World",
+    date: "Tuesday, April 21, 2026",
     time: "12:00 PM - 4:00 PM",
+    location: "MSC Cougar's Den",
+    description: "Hosted by the Portuguese Club. Experience cultural traditions through global food samples and music.",
+    category: "Social",
+    link: "https://kean.campuslabs.com/engage/event/12389290"
+  },
+  {
+    id: 2,
+    title: "Career Advisement Drop-Ins",
+    date: "Tuesday, April 21, 2026",
+    time: "3:00 PM - 4:00 PM",
+    location: "Bruce Hall - B101A",
+    description: "Quick 15-minute sessions for resume reviews and career advice. No appointment needed.",
+    category: "Academic",
+    link: "https://career.kean.edu/events/2026/04/21/career-advisement-drop-ins-no-appointment-needed-13/"
+  },
+  {
+    id: 3,
+    title: "Rogers 3rd Floor Meeting",
+    date: "Tuesday, April 21, 2026",
+    time: "5:00 PM - 6:00 PM",
+    location: "Rogers Hall 3rd Floor",
+    description: "This event is to meet with residents to fill them in with any updates, reminders, and policies for the upcoming spring semester.",
+    category: "Academic",
+    link: "https://kean.campuslabs.com/engage/event/12057843"
+  },
+  // --- WEDNESDAY, APRIL 22, 2026 ---
+  {
+    id: 4,
+    title: "Undergraduate Poster Symposium",
+    date: "Wednesday, April 22, 2026",
+    time: "9:30 AM - 11:00 AM",
     location: "Harwood Arena",
-    link: "#"
+    description: "The highlight of Research Days! Hundreds of undergraduate students showcase their research projects.",
+    category: "Academic",
+    link: "https://www.kean.edu/research-days"
   },
   {
-    title: "Finals Prep Workshop",
-    category: "Educational",
-    description: "Strategies to prepare for final exams.",
-    date: "December 1, 2026",
-    time: "2:00 PM - 3:30 PM",
-    location: "CAS Center",
-    link: "#"
+    id: 5,
+    title: "Nu Theta Chi Bake Sale",
+    date: "Wednesday, April 22, 2026",
+    time: "11:00 AM - 3:00 PM",
+    location: "MSC Atrium",
+    description: "Support Nu Theta Chi's philanthropic goals with homemade treats and sweets.",
+    category: "Social",
+    link: "https://kean.campuslabs.com/engage/event/11958433"
   },
   {
-    title: "Finals Survival Kits",
-    category: "Giveaway",
-    description: "Snacks and supplies to get through finals.",
-    date: "December 5, 2026",
-    time: "10:00 AM - 1:00 PM",
-    location: "Library Lobby",
-    link: "#"
+    id: 6,
+    title: "Future Careers Through Research Panel",
+    date: "Wednesday, April 22, 2026",
+    time: "1:30 PM - 2:30 PM",
+    location: "STEM Atrium (Downstairs)",
+    description: "Panel discussion on how student research leads to high-level career opportunities.",
+    category: "Academic",
+    link: "https://career.kean.edu/events/2026/04/22/future-careers-through-research-panel/"
   },
   {
-    title: "Midnight Breakfast",
-    category: "Fun",
-    description: "Late-night breakfast during finals week.",
-    date: "December 10, 2026",
-    time: "10:30 PM - 12:30 AM",
-    location: "Student Center",
-    link: "#"
+    id: 7,
+    title: "Graduate Poster Symposium",
+    date: "Wednesday, April 22, 2026",
+    time: "4:30 PM - 6:00 PM",
+    location: "Downs Hall",
+    description: "Graduate students present advanced research and scholarly discoveries to faculty and peers.",
+    category: "Academic",
+    link: "https://www.kean.edu/research-days"
   },
   {
-    title: "Spring Involvement Fair",
-    category: "Fun",
-    description: "Join clubs and campus organizations.",
-    date: "January 28, 2027",
-    time: "1:00 PM - 4:00 PM",
-    location: "Harwood Arena",
-    link: "#"
+    id: 8,
+    title: "Kean Dance Theatre Annual Spring 2026 Showcase Step In Time",
+    date: "Wednesday, April 22, 2026",
+    time: "7:00 PM - 9:15 PM",
+    location: "Wilkins Theatre",
+    description: "From the timeless grooves of the early decades to the bold, iconic vibes of the 2000s, this showcase brings history to life through movement, music, and unforgettable performances. Each piece captures the spirit, style, and attitude of its era, celebrating how dance has evolved!",
+    category: "Social",
+    link: "https://kean.campuslabs.com/engage/event/12284252"
+  },
+  // --- THURSDAY, APRIL 23, 2026 ---
+  {
+    id: 9,
+    title: "Career Connect Station",
+    date: "Thursday, April 23, 2026",
+    time: "3:00 PM - 4:00 PM",
+    location: "Harwood Arena (Main Lobby)",
+    description: "Get hands-on help with your LinkedIn profile and Handshake job applications.",
+    category: "Academic",
+    link: "https://career.kean.edu/events/2026/04/23/career-connect-station-no-appointment-needed-6/"
   },
   {
-    title: "Add/Drop Deadline Reminder",
-    category: "Reminder",
-    description: "Last day to adjust your schedule.",
-    date: "February 2, 2027",
-    time: "All Day",
-    location: "Online",
-    link: "#"
+    id: 10,
+    title: "Community Yoga",
+    date: "Thursday, April 23, 2026",
+    time: "3:30 PM - 4:15 PM",
+    location: "Nancy Thompson Learning Commons, L-114 (VISER)",
+    description:"Enjoy a one-of-a-kind practice in this 270-degree immersive space, complete with stunning visual projections and audio features to enhance your flow.",
+    category: "Social",
+    link: "https://kean.campuslabs.com/engage/event/11953320"
+  },
+  {
+    id: 11,
+    title: "CS/IT/AI Capstone Project Exhibition",
+    date: "Thursday, April 23, 2026",
+    time: "3:30 - 5:30 PM",
+    location: "North Avenue Academic Building (NAAB)",
+    description: "Computer Science and IT students display their final senior capstone projects.",
+    category: "Academic",
+    link: "https://kean.campuslabs.com/engage/event/12328987"
+  },
+  {
+    id: 12,
+    title: "Deaf Café Night",
+    date: "Thursday, April 23, 2026",
+    time: "7:00 PM - 9:30 PM",
+    location: "MSC Cougar's Den",
+    description: "A rebranded and revamped version of our annual Deaf Panel event. In addition to the traditional Q&A panel, we have moved to a more social atmosphere and added more time for mingling at chatting, as well as light refreshments to be served.",
+    category: "Social",
+    link: "https://kean.campuslabs.com/engage/event/12407799"
   }
 ];

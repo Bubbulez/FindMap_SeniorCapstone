@@ -1,129 +1,131 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import "../styles/theme.css";
-import { dining } from "../data/dining";
+import { useState } from 'react';
+import { DiningOption, diningLocations } from '@/app/data/dining';
 
 export default function DiningPage() {
-  const [selected, setSelected] = useState<any>(null);
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState<'all' | 'on-campus' | 'off-campus'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [favorites, setFavorites] = useState<number[]>([]);
+  
+  // Initialize with the first item in the data array
+  const [selectedLocation, setSelectedLocation] = useState<DiningOption>(diningLocations[0]);
 
-  // Filter logic
-  const filteredDining = dining.filter((place) => {
-    if (filter === "all") return true;
-    return place.type === filter;
+  // Combined Search and Filter Logic
+  const filteredLocations = diningLocations.filter((loc) => {
+    const matchesFilter = filter === 'all' || loc.type === filter;
+    const matchesSearch = 
+      loc.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      loc.location.toLowerCase().includes(searchQuery.toLowerCase());
+    
+    return matchesFilter && matchesSearch;
   });
 
+  const toggleFavorite = (id: number) => {
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(favId => favId !== id) : [...prev, id]
+    );
+  };
+
   return (
-    <main className="page-background" style={{ padding: "40px", minHeight: "100vh" }}>
-      <h1 className="page-title" style={{ textAlign: "center", marginBottom: "30px", color: "#222" }}>
-        Dining Options
-      </h1>
+    <div className="flex h-screen bg-gray-50">
+      {/* Sidebar */}
+      <div className="w-1/3 border-r bg-white flex flex-col">
+        <div className="p-6 border-b space-y-4">
+          <h1 className="text-2xl font-bold text-gray-800">Dining Options</h1>
+          
+          {/* Search Input */}
+          <input
+            type="text"
+            placeholder="Search dining locations..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all"
+          />
 
-      {/* --- Filter Buttons --- */}
-      <div style={{ display: "flex", gap: "15px", marginBottom: "40px", justifyContent: "center" }}>
-        {["all", "on-campus", "off-campus"].map((type) => (
-          <button
-            key={type}
-            onClick={() => {
-              setFilter(type);
-              setSelected(null);
-            }}
-            style={{
-              padding: "10px 25px",
-              borderRadius: "25px",
-              border: filter === type ? "none" : "1px solid #ccc",
-              backgroundColor: filter === type ? "#0070f3" : "#ffffff",
-              // Ensures text is dark when button is white
-              color: filter === type ? "#ffffff" : "#333333", 
-              cursor: "pointer",
-              fontWeight: "bold",
-              textTransform: "capitalize",
-              transition: "0.3s"
-            }}
-          >
-            {type.replace("-", " ")}
-          </button>
-        ))}
-      </div>
-
-      {/* --- Dining Grid --- */}
-      <div style={{ 
-        display: "grid", 
-        gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", 
-        gap: "20px" 
-      }}>
-        {filteredDining.map((place, index) => (
-          <div
-            key={index}
-            className="dining-card"
-            onClick={() => setSelected(place)}
-            style={{
-              padding: "20px",
-              borderRadius: "15px",
-              backgroundColor: "white",
-              // Added border for visibility on white backgrounds
-              border: selected?.name === place.name ? "2px solid #0070f3" : "1px solid #eee",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.05)",
-              cursor: "pointer",
-              transition: "transform 0.2s"
-            }}
-          >
-            <span style={{ 
-              fontSize: "0.8rem", 
-              backgroundColor: "#f0f0f0", 
-              padding: "4px 8px", 
-              borderRadius: "5px",
-              color: "#444" 
-            }}>
-              {place.category}
-            </span>
-            {/* Explicitly set heading and description to dark colors */}
-            <h2 style={{ marginTop: "10px", fontSize: "1.2rem", color: "#111" }}>{place.name}</h2>
-            <p style={{ color: "#555", fontSize: "0.9rem" }}>{place.description}</p>
+          {/* Filter Buttons */}
+          <div className="flex gap-2">
+            {(['all', 'on-campus', 'off-campus'] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => setFilter(t)}
+                className={`flex-1 py-2 text-xs font-semibold rounded-md border transition-all ${
+                  filter === t
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-sm'
+                    : 'bg-white text-gray-600 border-gray-300 hover:bg-gray-50'
+                }`}
+              >
+                {t === 'all' ? 'All' : t === 'on-campus' ? 'On Campus' : 'Off Campus'}
+              </button>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
 
-      {/* --- Detail View (Visible when an item is clicked) --- */}
-      {selected && (
-        <div style={{ 
-          marginTop: "50px", 
-          padding: "30px", 
-          backgroundColor: "#ffffff", 
-          borderRadius: "20px", 
-          border: "1px solid #ddd",
-          boxShadow: "0 -10px 25px rgba(0,0,0,0.05)",
-          color: "#222" // Ensures text inside detail view is dark
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-            <div>
-              <h2 style={{ color: "#0070f3", margin: "0 0 10px 0" }}>{selected.name}</h2>
-              <p style={{ color: "#333" }}><strong>Location:</strong> {selected.type === 'on-campus' ? 'On Kean Campus' : 'Off Campus'}</p>
-              <p style={{ color: "#444" }}>{selected.description}</p>
-            </div>
-            <button 
-              onClick={() => setSelected(null)}
-              style={{ background: "#eee", border: "none", borderRadius: "50%", width: "30px", height: "30px", cursor: "pointer", color: "#000" }}
-            >
-              ✕
-            </button>
-          </div>
-
-          {selected.embedUrl && (
-            <div style={{ marginTop: "20px" }}>
-              <iframe
-                src={selected.embedUrl}
-                width="100%"
-                height="350"
-                style={{ border: "0", borderRadius: "15px" }}
-                allowFullScreen
-                loading="lazy"
-              ></iframe>
+        {/* Results List */}
+        <div className="overflow-y-auto flex-1">
+          {filteredLocations.length > 0 ? (
+            filteredLocations.map((loc) => (
+              <div
+                key={loc.id}
+                onClick={() => setSelectedLocation(loc)}
+                className={`p-4 cursor-pointer border-b transition-colors ${
+                  selectedLocation.id === loc.id ? 'bg-blue-50' : 'hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h3 className="font-semibold text-gray-900">{loc.name}</h3>
+                    <p className="text-sm text-gray-500">{loc.location}</p>
+                    <span className="text-[10px] uppercase tracking-wider text-blue-500 font-bold">
+                      {loc.type.replace('-', ' ')}
+                    </span>
+                  </div>
+                  {favorites.includes(loc.id) && <span className="text-red-500">❤️</span>}
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="p-10 text-center text-gray-400 text-sm italic">
+              No results found for your search.
             </div>
           )}
         </div>
-      )}
-    </main>
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col p-8 bg-gray-100">
+        <div className="flex justify-between items-start mb-6">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900">{selectedLocation.name}</h2>
+            <p className="text-gray-600 mt-1 font-medium">{selectedLocation.location}</p>
+            <p className="text-gray-500 text-sm mt-2 max-w-2xl">{selectedLocation.description}</p>
+          </div>
+
+          <button
+            onClick={() => toggleFavorite(selectedLocation.id)}
+            className={`px-5 py-2.5 rounded-lg font-bold border flex items-center gap-2 transition-all ${
+              favorites.includes(selectedLocation.id)
+                ? 'bg-red-50 text-red-600 border-red-200'
+                : 'bg-white text-gray-700 border-gray-300 hover:shadow-md'
+            }`}
+          >
+            {favorites.includes(selectedLocation.id) ? '❤️ Saved' : '🤍 Favorite'}
+          </button>
+        </div>
+
+        {/* Map Container - Uses mapUrl from dining.ts */}
+        <div className="flex-1 rounded-2xl overflow-hidden border border-gray-300 shadow-xl bg-white">
+          <iframe
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src={selectedLocation.mapUrl}
+          ></iframe>
+        </div>
+      </div>
+    </div>
   );
 }

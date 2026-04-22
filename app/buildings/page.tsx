@@ -1,129 +1,104 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { locations, type Location } from "../data/locations";
+import { useState } from 'react';
+import { locations, Location } from '../data/locations';
 
 export default function BuildingsPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedBuilding, setSelectedBuilding] = useState<Location | null>(null);
+  const [activeType, setActiveType] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
 
-  const filteredBuildings = locations.filter((loc) =>
-    loc.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    loc.address.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const types = ['All', ...new Set(locations.map((loc) => loc.type))];
 
-  // BRAND COLOR DEFINITION
-  const keanBlue = "#2a58ad";
+  const filteredLocations = locations.filter((loc) => {
+    const matchesType = activeType === 'All' || loc.type === activeType;
+    const matchesSearch = 
+      loc.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (loc.description || '').toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesType && matchesSearch;
+  });
+
+  const clearFilters = () => {
+    setActiveType('All');
+    setSearchQuery('');
+    setSelectedLocation(null);
+  };
 
   return (
-    <main style={{ 
-      minHeight: "100vh", 
-      width: "100%",
-      backgroundColor: "#ebf2ff", // Light blue tint to match FindMap background feel
-      padding: "40px",
-      boxSizing: "border-box"
-    }}>
-      
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Title updated to Kean Blue */}
-        <h1 style={{ 
-          fontSize: "2.5rem", 
-          fontWeight: "bold", 
-          marginBottom: "30px", 
-          color: keanBlue,
-          textAlign: "center" 
-        }}>
-          Campus Buildings
-        </h1>
+    <main className="min-h-screen p-8 bg-gray-50 text-black">
+      <div className="max-w-7xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-blue-900">Campus Map & Buildings</h1>
+          <div className="mt-6 flex flex-col md:flex-row gap-4">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                placeholder="Search for a building..."
+                className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none text-black"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            {(activeType !== 'All' || searchQuery !== '') && (
+              <button onClick={clearFilters} className="px-6 py-3 bg-red-100 text-red-600 rounded-lg font-medium hover:bg-red-200">
+                Clear Filters
+              </button>
+            )}
+          </div>
+        </header>
 
-        <div style={{ display: "flex", gap: "30px", alignItems: "flex-start" }}>
-          
-          {/* --- LEFT SIDE: Search & List --- */}
-          <div style={{ flex: "1", maxWidth: "400px" }}>
-            <input
-              type="text"
-              placeholder="Search buildings..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "15px",
-                marginBottom: "20px",
-                borderRadius: "25px", // Rounded like the Home buttons
-                border: `2px solid ${keanBlue}`,
-                color: "black",
-                backgroundColor: "white",
-                outline: "none",
-                fontSize: "1rem"
-              }}
-            />
-
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", maxHeight: "600px", overflowY: "auto", paddingRight: "10px" }}>
-              {filteredBuildings.map((loc) => (
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* List Section */}
+          <div className="flex-1">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {types.map((type) => (
                 <button
-                  key={loc.title}
-                  onClick={() => setSelectedBuilding(loc)}
-                  style={{
-                    textAlign: "left",
-                    padding: "15px",
-                    borderRadius: "15px",
-                    // Use Kean Blue for the border and shadow when selected
-                    border: selectedBuilding?.title === loc.title ? `2px solid ${keanBlue}` : "1px solid #ddd",
-                    backgroundColor: "white",
-                    boxShadow: selectedBuilding?.title === loc.title ? `0 4px 12px rgba(42, 88, 173, 0.2)` : "none",
-                    cursor: "pointer",
-                    transition: "all 0.2s ease"
-                  }}
+                  key={type}
+                  onClick={() => setActiveType(type)}
+                  className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                    activeType === type ? 'bg-blue-600 text-white' : 'bg-white border border-gray-300'
+                  }`}
                 >
-                  <div style={{ 
-                    fontWeight: "bold", 
-                    fontSize: "1.1rem", 
-                    color: selectedBuilding?.title === loc.title ? keanBlue : "#333" 
-                  }}>
-                    {loc.title}
-                  </div>
-                  <div style={{ fontSize: "0.85rem", color: "#666", marginTop: "4px" }}>{loc.address}</div>
+                  {type}
                 </button>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {filteredLocations.map((loc) => (
+                <div 
+                  key={loc.id} 
+                  className={`p-5 rounded-xl border transition-all ${
+                    selectedLocation?.id === loc.id ? 'bg-blue-50 border-blue-500 ring-2 ring-blue-100' : 'bg-white border-gray-200'
+                  }`}
+                >
+                  <span className="text-[10px] font-bold uppercase text-blue-500">{loc.type}</span>
+                  <h2 className="text-lg font-bold text-gray-900">{loc.title}</h2>
+                  <p className="text-sm text-gray-600 mb-4">{loc.address}</p>
+                  
+                  {/* Map It Button */}
+                  <button 
+                    onClick={() => setSelectedLocation(loc)}
+                    className="w-full py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                  >
+                    📍 Map It
+                  </button>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* --- RIGHT SIDE: Dynamic Map --- */}
-          <div style={{ flex: 1 }}>
-            {selectedBuilding ? (
-              <iframe
-                src={selectedBuilding.embedUrl}
-                width="100%"
-                height="650"
-                style={{ 
-                  border: `3px solid white`, 
-                  borderRadius: "25px", 
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)" 
-                }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            ) : (
-              <div
-                style={{
-                  height: "650px",
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  backgroundColor: "rgba(255, 255, 255, 0.6)",
-                  border: `2px dashed ${keanBlue}`,
-                  borderRadius: "25px",
-                  color: keanBlue,
-                }}
-              >
-                <p style={{ fontSize: "1.2rem", fontWeight: "600" }}>
-                  Select a building to view the map
-                </p>
-              </div>
-            )}
+          {/* Sticky Map Section */}
+          <div className="lg:w-1/2">
+            <div className="sticky top-8 h-[500px] w-full bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
+              {selectedLocation ? (
+                <iframe src={selectedLocation.embedUrl} className="w-full h-full border-0" allowFullScreen loading="lazy"></iframe>
+              ) : (
+                <div className="flex flex-col items-center justify-center h-full text-gray-400">
+                  <p>Select a building to view the map</p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
