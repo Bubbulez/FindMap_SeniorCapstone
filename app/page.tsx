@@ -6,10 +6,6 @@ import { useEffect, useState } from "react";
 import "./styles/home.css";
 import Link from "next/link";
 
-<Link href="/" className="home-button">
-  Home
-</Link>
-
 export default function Home() {
   const router = useRouter();
 
@@ -18,10 +14,27 @@ export default function Home() {
   const [showReminderModal, setShowReminderModal] = useState(false);
   const [contactValue, setContactValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
     setIsLoggedIn(!!currentUser);
+  }, []);
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const formatted = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      setCurrentTime(formatted);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleAccountClick = () => {
@@ -81,7 +94,10 @@ export default function Home() {
 
   return (
     <main className="findmap-home">
-      {/* TOP RIGHT (ICON + AUTH LINKS) */}
+      <Link href="/" className="logo-home" aria-label="Go to home page">
+        <span className="logo-home-letter">K</span>
+      </Link>
+
       <div className="findmap-topbar">
         <button
           type="button"
@@ -108,7 +124,6 @@ export default function Home() {
         )}
       </div>
 
-      {/* HERO SECTION */}
       <section className="findmap-hero">
         <h1 className="findmap-title">FindMap</h1>
 
@@ -116,7 +131,6 @@ export default function Home() {
           FIND EVENTS. FIND BUILDINGS. FIND YOUR WAY.
         </p>
 
-        {/* TABS */}
         <div className="findmap-tabs">
           <button
             className="findmap-tab"
@@ -147,7 +161,6 @@ export default function Home() {
           </button>
         </div>
 
-        {/* IMAGE */}
         <div className="findmap-image-wrap">
           <Image
             src="/images/cougar.png"
@@ -159,7 +172,6 @@ export default function Home() {
           />
         </div>
 
-        {/* MAIN BUTTONS */}
         <div className="button-group">
           <button
             className="findmap-main-btn"
@@ -176,14 +188,12 @@ export default function Home() {
           </button>
         </div>
 
-        {/* SUCCESS NOTIFICATION */}
         {showNotification && (
           <div className="notification-box">
             Reminder email sent successfully!
           </div>
         )}
 
-        {/* REMINDER MODAL */}
         {showReminderModal && (
           <div className="modal-overlay">
             <div className="reminder-modal">
@@ -222,6 +232,11 @@ export default function Home() {
           </div>
         )}
       </section>
+
+      <div className="findmap-clock-box">
+        <span className="findmap-clock-label">Current Time</span>
+        <span className="findmap-clock-time">{currentTime}</span>
+      </div>
     </main>
   );
 }

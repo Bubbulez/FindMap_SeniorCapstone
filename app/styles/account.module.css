@@ -112,3 +112,74 @@
 .backLink:hover {
   text-decoration: underline;
 }
+
+.profileCardLarge {
+  width: 100%;
+  max-width: 860px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 26px;
+  padding: 34px 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.profileFormLarge {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profileFieldRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.profileLabel {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding-top: 12px;
+  text-align: left;
+}
+
+.uploadField {
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: white;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.uploadInput {
+  width: 100%;
+  max-width: 220px;
+}
+
+.uploadHint {
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .profileCardLarge {
+    padding: 24px 18px;
+  }
+
+  .profileFieldRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .profileLabel {
+    padding-top: 0;
+  }
+}

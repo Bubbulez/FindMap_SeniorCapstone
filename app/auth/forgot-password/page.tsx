@@ -6,6 +6,7 @@ import styles from '../../styles/account.module.css';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
+  const [recoveryType, setRecoveryType] = useState<'password' | 'username'>('password');
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -16,7 +17,12 @@ export default function ForgotPasswordPage() {
       return;
     }
 
-    setMessage('If an account with that email exists, a reset link would be sent.');
+    if (recoveryType === 'password') {
+      setMessage('If an account with that email exists, a password reset link would be sent.');
+    } else {
+      setMessage('If an account with that email exists, your username recovery information would be sent.');
+    }
+
     setEmail('');
   };
 
@@ -24,7 +30,7 @@ export default function ForgotPasswordPage() {
     <div className={styles.accountPage}>
       <h1 className={styles.accountTitle}>Forgot Password</h1>
       <p className={styles.accountSubtitle}>
-        Enter your email below and we will help you recover your account.
+        Recover your password or username below.
       </p>
 
       <div className={styles.accountCard}>
@@ -38,9 +44,19 @@ export default function ForgotPasswordPage() {
           />
 
           <button className={styles.accountButton} type="submit">
-            Submit
+            {recoveryType === 'password' ? 'Reset Password' : 'Recover Username'}
           </button>
         </form>
+
+        <button
+          type="button"
+          className={styles.secondaryLink}
+          onClick={() =>
+            setRecoveryType(recoveryType === 'password' ? 'username' : 'password')
+          }
+        >
+          {recoveryType === 'password' ? 'or forgot username?' : 'or forgot password?'}
+        </button>
 
         {message && <p className={styles.accountMessage}>{message}</p>}
 
