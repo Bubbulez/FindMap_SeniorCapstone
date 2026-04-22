@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import "./styles/home.css";
-import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -94,10 +92,6 @@ export default function Home() {
 
   return (
     <main className="findmap-home">
-      <Link href="/" className="logo-home" aria-label="Go to home page">
-        <span className="logo-home-letter">K</span>
-      </Link>
-
       <div className="findmap-topbar">
         <button
           type="button"
