@@ -20,6 +20,8 @@ export default function Home() {
 
     if (currentUser) {
       router.push("/account");
+    } else {
+      router.push("/signin");
     }
   };
 

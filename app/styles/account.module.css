@@ -1,0 +1,185 @@
+.accountPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #32417b, #84848e);
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.accountTitle {
+  font-size: 52px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.accountSubtitle {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.accountCard {
+  width: 100%;
+  max-width: 460px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.accountForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.accountInput,
+.accountTextarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.accountTextarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.accountButton {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: #32417b;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.accountButton:hover {
+  transform: translateY(-2px);
+}
+
+.accountLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.accountLinkButton {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: white;
+  color: #32417b;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.accountLinkButton:hover {
+  transform: translateY(-2px);
+}
+
+.accountMessage {
+  color: white;
+  font-size: 15px;
+  margin-top: 18px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 18px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
+.profileCardLarge {
+  width: 100%;
+  max-width: 860px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 26px;
+  padding: 34px 28px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.profileFormLarge {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profileFieldRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: start;
+  gap: 16px;
+}
+
+.profileLabel {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  padding-top: 12px;
+  text-align: left;
+}
+
+.uploadField {
+  width: 100%;
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: white;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.uploadInput {
+  width: 100%;
+  max-width: 220px;
+}
+
+.uploadHint {
+  color: #475569;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 700px) {
+  .profileCardLarge {
+    padding: 24px 18px;
+  }
+
+  .profileFieldRow {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .profileLabel {
+    padding-top: 0;
+  }
+}
