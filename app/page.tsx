@@ -94,10 +94,10 @@ export default function Home() {
 
         <div className="findmap-image-wrap">
           <Image
-            src="/images/cougar.png"
-            alt="FindMap Cougar"
-            width={260}
-            height={260}
+            src="/images/upkean.png"
+            alt="FindMap Logo"
+            width={400}
+            height={200}
             className="findmap-image"
             priority
           />
@@ -113,6 +113,9 @@ export default function Home() {
           </button>
         </div>
       </section>
+      <div className="footer-message">
+  This page serves the Kean University community, including students, faculty, staff, and visitors.
+</div>
     </main>
   );
 }

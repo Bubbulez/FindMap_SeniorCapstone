@@ -309,13 +309,13 @@
 
 .page-background {
   min-height: 100vh;
-  background-color: #6670a3;
+  background-color: #ecedf2;
   padding: 40px 24px;
 }
 
 .page-title {
   text-align: center;
-  color: white;
+  color:#1e2a5a;
   font-size: 48px;
   font-weight: 700;
   margin-bottom: 32px;
@@ -817,12 +817,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 28px;
+  margin-bottom: 0px;
   animation: fadeInUp 0.9s ease-out;
 }
 
 .findmap-image {
-  width: 280px;
+  width: 500px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -844,6 +844,7 @@
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(37, 99, 235, 0.25);
   transition: transform 0.2s ease, background 0.2s ease;
+  margin-top: -90px;
 }
 
 .findmap-main-btn:hover {
@@ -957,9 +958,23 @@
     opacity: 0;
     transform: translateY(14px);
   }
+}
 
   to {
     opacity: 1;
     transform: translateY(0);
   }
+
+  .footer-message {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  font-size: 12px;
+  color: #1e3a8a;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 8px 12px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
