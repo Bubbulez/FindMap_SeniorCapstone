@@ -24,6 +24,10 @@ export default function AccountPage() {
           <Link href="/auth/forgot-password">
             <button className={styles.accountLinkButton}>Forgot Password</button>
           </Link>
+
+          <Link href="/account/signout">
+            <button className={styles.accountLinkButton}>Log Out</button>
+          </Link>
         </div>
       </div>
     </div>
